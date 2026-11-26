@@ -1,0 +1,30 @@
+---
+// One row of the age axis: same geometry everywhere (1,5 to 15,5 years), capsules from the start age to the end age.
+import { x, years, type Span } from "../data/familyplace";
+interface Props {
+  spans?: Span[];
+  labels?: boolean;              // print start and end ages at the capsule ends
+  dashed?: { from: number; to: number; text: string } | { full: true; text: string };
+  tone?: "light" | "wine";
+  size?: "row" | "mini";
+  reveal?: "grow" | "clip";
+}
+const { spans = [], labels = true, dashed, tone = "light", size = "row", reveal = "grow" } = Astro.props;
+const fmt = (n: number) => String(n).replace(".", ",");
+---
+<div class:list={["track", `track--${tone}`, `track--${size}`]} aria-hidden="true" data-reveal={reveal}>
+  <span class="track__body">
+  <span class="track__grid">
+    {years.map((y) => <span class="track__tick" style={`--x:${x(y)}`}></span>)}
+  </span>
+  {spans.map(([a, b], i) => (
+    <span class="capsule" style={`--from:${x(a)};--to:${x(b)};--i:${i}`}>
+      {labels && <span class="capsule__label capsule__label--start">{fmt(a)}</span>}
+      {labels && <span class="capsule__label capsule__label--end">{fmt(b)}</span>}
+    </span>
+  ))}
+  {dashed && "full" in dashed && <span class="capsule capsule--dashed capsule--note"><span class="capsule__text">{dashed.text}</span></span>}
+  {dashed && "from" in dashed && <span class="capsule capsule--dashed" style={`--from:${x(dashed.from)};--to:${x(dashed.to)}`}><span class="capsule__text">{dashed.text}</span></span>}
+  </span>
+  {dashed && "from" in dashed && <span class="track__caption">{dashed.text}</span>}
+</div>

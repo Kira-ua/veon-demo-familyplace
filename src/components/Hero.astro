@@ -1,0 +1,52 @@
+---
+import Icon from "./Icon.astro";
+import { phone, x, years } from "../data/familyplace";
+const segs = [
+  { name: "Садочки", ages: "2–6", from: 2, to: 6, dashed: false },
+  { name: "Центр розвитку", ages: "1,6–15", from: 1.6, to: 15, dashed: false },
+  { name: "Школа", ages: "з нульового класу", from: 6, to: 10.5, dashed: true },
+];
+const marks = [6, 10, 15];
+---
+<section id="top" class="hero" data-rec="R-001,R-006" aria-labelledby="hero-title">
+  <div class="container hero__inner">
+    <h1 id="hero-title" class="hero__title" data-rec="SEO-R007">Приватні садочки, центр розвитку та початкова школа в Ужгороді</h1>
+    <p class="hero__lead">Садочки — с. Минай і с. Сторожниця. Центр розвитку і школа — Ужгород. Заняття від 1,6 року.</p>
+    <ul class="hero__facts">
+      <li><strong>від 1,6 р.</strong> перші заняття</li>
+      <li><strong>до 10 дітей</strong> у групі садочка</li>
+      <li><strong>08:30–18:00</strong> повний день у садочках</li>
+    </ul>
+    <div class="hero__actions">
+      <a class="btn btn--primary btn--hero" href={phone.href}><Icon name="phone" size={20} />Зателефонувати</a>
+      <a class="link-quiet" href="#napriamy"><span>Обрати за віком</span><Icon name="down" size={18} class="icon-nudge" /></a>
+    </div>
+  </div>
+  <div class="container">
+    <div class="axis" data-axis>
+      <p class="axis__caption" id="axis-caption">Вік дитини, років. Натисніть на вік: нижче залишаться напрями, що підходять.</p>
+      <ul class="axis__segs" aria-label="Напрями на шкалі віку">
+        {segs.map((g) => (
+          <li class:list={["axis__seg", { "axis__seg--dashed": g.dashed }]} style={`--from:${x(g.from)};--to:${x(g.to)}`}>
+            <span class="axis__seg-label"><strong>{g.name}</strong> {g.ages}</span>
+            <span class="axis__seg-bar" aria-hidden="true"></span>
+          </li>
+        ))}
+      </ul>
+      <div class="axis__marks" aria-hidden="true">
+        <span class="axis__line"></span>
+        <span class="axis__mark" style={`--x:${x(1.6)}`}>1,6</span>
+        {marks.map((m) => <span class="axis__mark" style={`--x:${x(m)}`}>{m}</span>)}
+      </div>
+      <div class="axis__track" role="group" aria-labelledby="axis-caption">
+        <span class="axis__line" aria-hidden="true"></span>
+        {years.map((y, i) => (
+          <button class="axis__year" type="button" data-year={y} aria-pressed="false" style={`--x:${x(y)};--i:${i}`}>
+            <span class="axis__tick" aria-hidden="true"></span>
+            <span class="axis__num">{y}</span><span class="visually-hidden"> р.</span>
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,51 @@
+---
+import { Picture } from "astro:assets";
+import Icon from "./Icon.astro";
+import Track from "./Track.astro";
+import karta from "../assets/photos/shkola-karta.jpg";
+import { phone } from "../data/familyplace";
+---
+<section id="shkola" class="band band--rose shkola" aria-labelledby="shkola-title">
+  <div class="container">
+    <div class="shkola__spread">
+      <div class="shkola__left">
+      <h2 id="shkola-title" class="shkola__title">Початкова школа: НУШ та «Інтелект України»</h2>
+      <figure class="shkola__quote">
+        <blockquote><p>Приватна початкова школа, де дитина створює себе з любові.</p></blockquote>
+        <figcaption>Так FamilyPlace описує свою школу</figcaption>
+      </figure>
+      </div>
+      <figure class="shkola__photo">
+        <Picture src={karta} formats={["avif", "webp"]} widths={[480, 800, 1280]} sizes="(min-width: 60rem) 50vw, 100vw" alt="Учні з учителькою складають велику карту світу за столом у класі" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+    <div class="shkola__scale">
+      <Track dashed={{ from: 6, to: 10.5, text: "нульовий клас, далі початкова школа" }} size="mini" reveal="clip" />
+    </div>
+    <div class="shkola__facts">
+      <div>
+        <h3>Програма</h3>
+        <p>Навчання за концепцією Нової української школи і програмою «Інтелект України».</p>
+      </div>
+      <div>
+        <h3>Нульовий клас</h3>
+        <p>Перехідний клас перед початком навчання в школі.</p>
+      </div>
+      <div>
+        <h3>Предмети</h3>
+        <ul class="shkola__subjects">
+          <li>Українська мова</li>
+          <li>Англійська</li>
+          <li>Математика</li>
+          <li>Комп’ютерна грамотність</li>
+          <li>Творчі та проєктні студії</li>
+          <li>Соціальні навички</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ask">
+      <p class="ask__text">Вартість навчання й набір до класів — за телефоном.</p>
+      <a class="btn btn--primary" href={phone.href}><Icon name="phone" size={20} />Зателефонувати</a>
+    </div>
+  </div>
+</section>

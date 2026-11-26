@@ -1,0 +1,71 @@
+---
+import FutureLink from "./FutureLink.astro";
+import Icon from "./Icon.astro";
+import Track from "./Track.astro";
+import { phone, years } from "../data/familyplace";
+const soon = "Розділ у розробці";
+---
+<section id="napriamy" class="band band--rose napriamy" data-rec="R-001" aria-labelledby="napriamy-title">
+  <div class="container">
+    <div class="napriamy__head">
+      <h2 id="napriamy-title">Що підходить дитині: від 1,6 до 15 років</h2>
+      <p class="napriamy__status" aria-live="polite" data-age-status>Кожен напрям стоїть на шкалі віку. Оберіть вік, щоб залишились лише ті, що підходять.</p>
+    </div>
+
+    <div class="year-rail" role="group" aria-label="Вік дитини, років">
+      <button class="year-rail__btn" type="button" data-year="all" aria-pressed="true">Усі</button>
+      {years.map((y) => <button class="year-rail__btn" type="button" data-year={y} aria-pressed="false">{y}<span class="visually-hidden"> р.</span></button>)}
+    </div>
+
+    <ol class="paths">
+      <li class="path" data-path data-from="2" data-to="6" data-name="садочки">
+        <div class="path__text">
+          <h3>Садочки</h3>
+          <p class="path__age num">2–6 років</p>
+          <p>Повний день 08:30–18:00 у с. Минай і с. Сторожниця. Групи 2–3, 3–4, 4–5 і 5–6 років, до 10 дітей.</p>
+        </div>
+        <div class="path__actions">
+          <a class="link-quiet" href="#sadochky"><span>Про садочки</span><Icon name="down" size={18} class="icon-nudge" /></a>
+          <FutureLink note={soon}>Окрема сторінка</FutureLink>
+        </div>
+        <Track spans={[[2, 6]]} />
+      </li>
+      <li class="path" data-path data-from="1.6" data-to="15" data-name="центр розвитку">
+        <div class="path__text">
+          <h3>Центр розвитку</h3>
+          <p class="path__age num">від 1,6 до 15 років</p>
+          <p>Ранній розвиток, підготовка до школи, англійська, малювання, танці, карате, логопед і психолог.</p>
+        </div>
+        <div class="path__actions">
+          <a class="link-quiet" href="#tsentr-rozvytku"><span>Заняття і ціни</span><Icon name="down" size={18} class="icon-nudge" /></a>
+          <FutureLink note={soon}>Окрема сторінка</FutureLink>
+        </div>
+        <Track spans={[[1.6, 15]]} />
+      </li>
+      <li class="path" data-path data-name="початкова школа">
+        <div class="path__text">
+          <h3>Початкова школа</h3>
+          <p class="path__age">з нульового класу</p>
+          <p>Концепція НУШ і програма «Інтелект України», перехідний нульовий клас.</p>
+        </div>
+        <div class="path__actions">
+          <a class="link-quiet" href="#shkola"><span>Про школу</span><Icon name="down" size={18} class="icon-nudge" /></a>
+          <FutureLink note={soon}>Окрема сторінка</FutureLink>
+        </div>
+        <Track dashed={{ from: 6, to: 10.5, text: "нульовий клас, далі початкова школа" }} />
+      </li>
+      <li class="path" id="tabir" data-path data-name="табір">
+        <div class="path__text">
+          <h3>Табір</h3>
+          <p class="path__age">вік, дати й вартість зміни — за телефоном</p>
+          <p>Розкажемо про найближчі зміни телефоном.</p>
+        </div>
+        <div class="path__actions">
+          <a class="link-quiet" href={phone.href}><Icon name="phone" size={18} /><span>Запитати про табір</span></a>
+          <FutureLink note={soon}>Окрема сторінка</FutureLink>
+        </div>
+        <Track dashed={{ full: true, text: "дати змін і вік уточнюйте" }} />
+      </li>
+    </ol>
+  </div>
+</section>

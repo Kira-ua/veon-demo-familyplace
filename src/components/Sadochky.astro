@@ -1,0 +1,65 @@
+---
+import { Picture } from "astro:assets";
+import Icon from "./Icon.astro";
+import Track from "./Track.astro";
+import mynai from "../assets/photos/sadochok-mynai.jpg";
+import storozh from "../assets/photos/sadochok-storozhnytsia.jpg";
+import obid from "../assets/photos/obid.jpg";
+import { phone, places } from "../data/familyplace";
+const { mynai: m, storozhnytsia: s } = places;
+---
+<section id="sadochky" class="section sadochky" aria-labelledby="sadochky-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="sadochky-title">Два садочки повного дня: Минай і Сторожниця</h2>
+      <div class="section-head__scale">
+        <Track spans={[[2, 6]]} size="mini" reveal="clip" />
+        <p class="small muted">Групи 2–3, 3–4, 4–5 і 5–6 років</p>
+      </div>
+    </div>
+
+    <div class="houses">
+      <article class="house house--wide">
+        <Picture src={mynai} formats={["avif", "webp"]} widths={[480, 800, 1200]} sizes="(min-width: 60rem) 58vw, 100vw" alt="Будинок садочка №1 у Минаї: світлий дім з червоним дахом і стежкою до входу" loading="lazy" decoding="async" class="house__img" />
+        <div class="house__text">
+          <h3><span class="nowrap">{m.city},</span> {m.street}</h3>
+          <p class="house__label">{m.name}, 08:30–18:00</p>
+          <a class="link-quiet" href={m.map} target="_blank" rel="noopener"><Icon name="route" size={18} /><span>Прокласти маршрут</span></a>
+        </div>
+      </article>
+      <article class="house house--tall">
+        <Picture src={storozh} formats={["avif", "webp"]} widths={[400, 640, 815]} sizes="(min-width: 60rem) 40vw, 100vw" alt="Будинок садочка №2 у Сторожниці: білий дім з червоним дахом і кипарисами" loading="lazy" decoding="async" class="house__img" />
+        <div class="house__text">
+          <h3><span class="nowrap">{s.city},</span> {s.street}</h3>
+          <p class="house__label">{s.name}, 08:30–18:00</p>
+          <a class="link-quiet" href={s.map} target="_blank" rel="noopener"><Icon name="route" size={18} /><span>Прокласти маршрут</span></a>
+        </div>
+      </article>
+    </div>
+
+    <div class="terms">
+      <dl class="terms__big">
+        <div><dt>Графік обох садочків</dt><dd class="num">08:30–18:00</dd></div>
+        <div><dt>Дітей у групі</dt><dd class="num">до 10</dd></div>
+        <div><dt>Харчування</dt><dd class="num">5 разів</dd></div>
+      </dl>
+      <div class="terms__body">
+        <ul class="terms__list">
+          <li>Індивідуальне меню для алергіків</li>
+          <li>Дві прогулянки на закритій приватній території</li>
+          <li>Відеоспостереження і закритий чат для батьків</li>
+          <li>У кожній групі вихователь і асистент</li>
+          <li>У штаті медсестра, психолог і логопед</li>
+        </ul>
+        <figure class="terms__photo">
+          <Picture src={obid} formats={["avif", "webp"]} widths={[320, 560, 800]} sizes="(min-width: 60rem) 26vw, 100vw" alt="Дівчинка за обідом у садочку показує, що смачно" loading="lazy" decoding="async" />
+        </figure>
+      </div>
+    </div>
+
+    <div class="ask">
+      <p class="ask__text">Вартість і вільні місця — за телефоном.</p>
+      <a class="btn btn--primary" href={phone.href}><Icon name="phone" size={20} />Зателефонувати</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,101 @@
+/* Hallmark · shape: age-axis index (one growth scale from the first screen to the price list) · genre: modern-minimal · theme: custom · job: book (visit) · idea: "Сторінка — шкала зросту на одвірку: кожен напрям стоїть на шкалі віку там, де він потрібен дитині" · vibe: "warm, exact, family house, honest prices"
+ * paper: #FBF6F3 · accent: #A90001 · display: Geologica · body: Golos Text · hero: Banner, typographic H1 on ten columns, three facts, call button, the age axis 2 to 15 along the foot, no photo · nav: edge-aligned bar, logo, six anchors, number as text, one red call button; burger under 72rem · footer: light index footer, logo, contacts, future pages · imagery: client photos · signature: the age axis 1,6 to 15 with red ticks, the same geometry in every section and in the price list
+ * axes: warm-light/geometric-humanist/brand-red · posture: committed · surface: absolute · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V4 · weakest: imagery (2022 to 2023 client photos, mixed quality), one warm treatment, buildings cropped large, the axis carries the page where photos are weak */
+/* Hallmark · waive 7b · --color-on-accent #FFFFFF is used only as text on the #A90001 call button (7.8:1) · the approved concept palette (veon-concept colors) fixes #FFFFFF as on-accent */
+/* Client design tokens from design/concept.md (veon-concept colors and fonts). One token system, base names kept. */
+:root {
+  /* Palette (concept §5) */
+  --color-bg: #FBF6F3;
+  --color-text: #2A1F1D;
+  --color-muted: #6B5A55;
+  --color-accent: #A90001;
+  --color-accent-strong: #8E0001;
+  --color-on-accent: #FFFFFF;
+  --color-accent-ink: var(--color-on-accent);
+  --color-rose: #F3DCD6;
+  --color-wine: #3E0F12;
+  --color-rose-muted: #D9B8B1;
+  --color-rule: #E3CFC8;
+  --color-rule-strong: #CDB3AB;
+  --color-wine-rule: #6A3236;
+  --color-wine-track: #57232A;
+
+  /* Type (Geologica display, Golos Text body; local woff2) */
+  --font-display: "Geologica", "Geologica Fallback", system-ui, sans-serif;
+  --font-body: "Golos Text", "Golos Text Fallback", system-ui, sans-serif;
+  --weight-body: 400;
+  --weight-strong: 600;
+  --weight-display: 800;
+  /* Scale 1440 / 390: 76/36 · 48/28 · 26/20 · 21/18 · 17/16 · 14/14 */
+  --text-display: clamp(2.25rem, 1.321rem + 3.81vw, 4.75rem);
+  --text-section: clamp(1.75rem, 1.286rem + 1.905vw, 3rem);
+  --text-title: clamp(1.25rem, 1.111rem + 0.571vw, 1.625rem);
+  --text-lead: clamp(1.125rem, 1.055rem + 0.286vw, 1.3125rem);
+  --text-md: clamp(1rem, 0.977rem + 0.095vw, 1.0625rem);
+  --text-sm: 0.875rem;
+  --text-numeral: clamp(3rem, 1.6rem + 5.2vw, 5.75rem);
+  --text-statement: clamp(1.5rem, 1.1rem + 1.6vw, 2.5rem);
+
+  /* Spacing, rhythm of 8 (concept: 8 · 16 · 24 · 40 · 64 · 104 · 160) */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6.5rem;
+  --space-3xl: 10rem;
+  --section: clamp(4.5rem, 3.386rem + 4.571vw, 7.5rem);
+  --gutter: clamp(1.25rem, 0.229rem + 4.19vw, 4rem);
+  --gap-columns: clamp(1rem, 0.81rem + 0.76vw, 1.5rem);
+  --space: var(--gutter);
+  --container: 1280px;
+  --header-h: 4.5rem;
+
+  /* Shape */
+  --radius: 6px;
+  --radius-capsule: 999px;
+  --track-h: 12px;
+  --hit: 44px;
+  --btn-h: 52px;
+
+  /* Age axis domain: 1,5 to 15,5 years */
+  --axis-min: 1.5;
+  --axis-span: 14;
+
+  /* Motion */
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --ease-in: cubic-bezier(.5, 0, .75, 0);
+  --ease-in-out: cubic-bezier(.65, 0, .35, 1);
+  --dur-micro: 160ms;
+  --dur-short: 220ms;
+  --dur-long: 600ms;
+  --dur-draw: 700ms;
+  --dur: 600ms;
+
+  /* Layers */
+  --z-raised: 10;
+  --z-sticky: 200;
+  --z-nav: 300;
+  --z-menu: 400;
+  --z-tooltip: 600;
+}
+
+@media (max-width: 40rem) {
+  :root { --header-h: 4rem; }
+}
+
+/* Self-hosted OFL fonts (Geologica, Golos Text; licences in public/fonts). Subsets: cyrillic + latin, font-display: swap. */
+@font-face { font-family: "Geologica"; font-style: normal; font-weight: 600; font-display: swap; src: url("../assets/fonts/geologica-cyrillic-600-normal.woff2") format("woff2"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: "Geologica"; font-style: normal; font-weight: 600; font-display: swap; src: url("../assets/fonts/geologica-latin-600-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Geologica"; font-style: normal; font-weight: 800; font-display: swap; src: url("../assets/fonts/geologica-cyrillic-800-normal.woff2") format("woff2"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: "Geologica"; font-style: normal; font-weight: 800; font-display: swap; src: url("../assets/fonts/geologica-latin-800-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Golos Text"; font-style: normal; font-weight: 400; font-display: swap; src: url("../assets/fonts/golos-text-cyrillic-400-normal.woff2") format("woff2"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: "Golos Text"; font-style: normal; font-weight: 400; font-display: swap; src: url("../assets/fonts/golos-text-latin-400-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Golos Text"; font-style: normal; font-weight: 600; font-display: swap; src: url("../assets/fonts/golos-text-cyrillic-600-normal.woff2") format("woff2"); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: "Golos Text"; font-style: normal; font-weight: 600; font-display: swap; src: url("../assets/fonts/golos-text-latin-600-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+/* Metric-matched fallbacks (measured with fontkit against Arial on a Ukrainian sample) to keep CLS at 0 while the fonts swap in. */
+@font-face { font-family: "Geologica Fallback"; src: local("Arial Bold"), local("Arial-BoldMT"), local("Arial"); font-weight: 600 800; size-adjust: 106.5%; ascent-override: 91.5%; descent-override: 25.8%; line-gap-override: 0%; }
+@font-face { font-family: "Golos Text Fallback"; src: local("Arial"), local("ArialMT"); font-weight: 400 600; size-adjust: 107.8%; ascent-override: 90.9%; descent-override: 20.4%; line-gap-override: 0%; }

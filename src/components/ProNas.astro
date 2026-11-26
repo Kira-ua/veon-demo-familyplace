@@ -1,0 +1,45 @@
+---
+import { Picture } from "astro:assets";
+import FutureLink from "./FutureLink.astro";
+import Icon from "./Icon.astro";
+import fasad from "../assets/photos/tsentr-fasad.jpg";
+import piknik from "../assets/photos/piknik.jpg";
+import popkorn from "../assets/photos/popkorn.jpg";
+import probirky from "../assets/photos/doslid-probirky.jpg";
+import tachka from "../assets/photos/podvirya-tachka.jpg";
+import { instagram, facebook } from "../data/familyplace";
+const soon = "Розділ у розробці";
+const small = [
+  { src: piknik, alt: "Діти на пікніку на траві під деревом", cls: "m-a", w: [400, 720] },
+  { src: popkorn, alt: "Дівчинка з попкорном на святі", cls: "m-b", w: [320, 560] },
+  { src: probirky, alt: "Діти за дослідом з кольоровими пробірками", cls: "m-c", w: [400, 720] },
+  { src: tachka, alt: "Хлопчик і дівчинка з візочком на подвір’ї", cls: "m-d", w: [400, 720] },
+];
+---
+<section id="pro-nas" class="section pro-nas" aria-labelledby="pro-nas-title">
+  <div class="container">
+    <div class="pro-nas__lead">
+      <div class="pro-nas__text">
+        <p class="pro-nas__date num"><time datetime="2018-12-19">19.12.2018</time></p>
+        <h2 id="pro-nas-title">Сімейний простір «Фемелік»: від садочка до школи</h2>
+        <p class="lead">FamilyPlace відкрився 19 грудня 2018 року як друга оселя для дитини. Тепер це два садочки, центр розвитку з гуртками і початкова школа.</p>
+        <ul class="socials">
+          <li><a class="social" href={instagram.href} target="_blank" rel="noopener"><Icon name="instagram" size={22} /><span><strong>Instagram</strong> <span class="num">{instagram.followers}</span> підписників</span></a></li>
+          <li><a class="social" href={facebook.href} target="_blank" rel="noopener"><Icon name="facebook" size={22} /><span><strong>Facebook</strong> <span class="num">{facebook.followers}</span> читачів</span></a></li>
+        </ul>
+        <p class="small muted">Дані сторінок на листопад 2026 року.</p>
+        <p class="pro-nas__future"><FutureLink note={soon}>Галерея</FutureLink><FutureLink note={soon}>Про нас</FutureLink></p>
+      </div>
+      <figure class="pro-nas__main">
+        <Picture src={fasad} formats={["avif", "webp"]} widths={[480, 800, 1200, 1600]} sizes="(min-width: 60rem) 56vw, 100vw" alt="Фасад центру розвитку з вивіскою FAMILY PLACE в Ужгороді" loading="lazy" decoding="async" />
+      </figure>
+    </div>
+    <div class="montage">
+      {small.map((p) => (
+        <figure class:list={["montage__item", p.cls]}>
+          <Picture src={p.src} formats={["avif", "webp"]} widths={p.w} sizes="(min-width: 60rem) 30vw, 50vw" alt={p.alt} loading="lazy" decoding="async" />
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>

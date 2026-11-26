@@ -1,0 +1,57 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/logo-familyplace.png";
+import Icon from "./Icon.astro";
+import { phone, email, instagram, facebook } from "../data/familyplace";
+
+const nav = [
+  { href: "#sadochky", label: "Садочки" },
+  { href: "#tsentr-rozvytku", label: "Центр розвитку" },
+  { href: "#shkola", label: "Школа" },
+  { href: "#tabir", label: "Табір" },
+  { href: "#pro-nas", label: "Про нас" },
+  { href: "#kontakty", label: "Контакти" },
+];
+---
+<header class="site-header" data-rec="R-002,R-003,SEO-R002">
+  <div class="container site-header__bar">
+    <a class="site-header__logo" href="#top" aria-label="FamilyPlace, на початок сторінки">
+      <Image src={logo} alt="FamilyPlace" width={336} height={49} loading="eager" decoding="async" format="webp" class="logo-img" />
+    </a>
+    <nav class="site-nav" aria-label="Розділи сторінки" data-rec="R-003">
+      <ul class="site-nav__list">
+        {nav.map((n) => <li><a class="site-nav__link" href={n.href} data-spy={n.href.slice(1)}>{n.label}</a></li>)}
+      </ul>
+    </nav>
+    <div class="site-header__actions">
+      <a class="site-header__phone" href={phone.href}>{phone.short}</a>
+      <a class="btn btn--primary btn--header" href={phone.href} data-rec="R-002">
+        <Icon name="phone" size={18} />
+        <span class="btn__long">Зателефонувати</span>
+      </a>
+      <button class="menu-toggle" type="button" popovertarget="mobile-menu" aria-label="Меню" data-menu-toggle>
+        <Icon name="menu" size={24} />
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="mobile-menu" popover aria-label="Меню">
+    <div class="mobile-menu__top container">
+      <span class="mobile-menu__title">Меню</span>
+      <button class="menu-toggle menu-toggle--close" type="button" popovertarget="mobile-menu" popovertargetaction="hide" aria-label="Закрити меню">
+        <Icon name="close" size={24} />
+      </button>
+    </div>
+    <nav class="container mobile-menu__nav" aria-label="Розділи сторінки, мобільне меню">
+      <ul>
+        {nav.map((n) => <li><a class="mobile-menu__link" href={n.href}>{n.label}</a></li>)}
+      </ul>
+      <a class="btn btn--primary btn--wide" href={phone.href}><Icon name="phone" size={20} />Зателефонувати</a>
+      <ul class="mobile-menu__channels">
+        <li><a href={phone.href}>{phone.display}</a></li>
+        <li><a href={email.href}>{email.display}</a></li>
+        <li><a href={instagram.href} rel="noopener" target="_blank">Instagram</a></li>
+        <li><a href={facebook.href} rel="noopener" target="_blank">Facebook</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>

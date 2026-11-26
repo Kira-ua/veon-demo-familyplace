@@ -1,0 +1,8 @@
+---
+import Icon from "./Icon.astro";
+import { phone, instagram } from "../data/familyplace";
+---
+<div class="callbar" data-callbar data-rec="R-002">
+  <a class="btn btn--primary callbar__call" href={phone.href}><Icon name="phone" size={20} />Зателефонувати</a>
+  <a class="callbar__ig" href={instagram.href} target="_blank" rel="noopener"><Icon name="instagram" size={20} /><span>Instagram</span></a>
+</div>

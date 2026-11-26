@@ -1,0 +1,61 @@
+---
+import Icon from "./Icon.astro";
+import Track from "./Track.astro";
+import { lessons, priceFilters, phone, places } from "../data/familyplace";
+const c = places.centre;
+---
+<section id="tsentr-rozvytku" class="band band--wine tsentr" data-rec="R-004" aria-labelledby="tsentr-title">
+  <div class="container">
+    <div class="tsentr__head">
+      <h2 id="tsentr-title">Центр розвитку: заняття і гуртки з цінами</h2>
+      <div class="tsentr__where">
+        <p><strong>{c.city}, {c.street}</strong></p>
+        <p class="num">{c.hours.join(", ")}</p>
+      </div>
+    </div>
+
+    <div class="filter" data-filter-bar>
+      <div class="filter__chips" role="group" aria-label="Вік дитини для фільтра занять">
+        {priceFilters.map((f) => (
+          <button class="chip" type="button" data-filter={f.id} data-from={f.from} data-to={f.to} aria-pressed={f.id === "all" ? "true" : "false"}>{f.label}</button>
+        ))}
+      </div>
+      <p class="filter__count small" aria-live="polite" data-filter-count>Показано {lessons.length} з {lessons.length}</p>
+    </div>
+
+    <table class="prices">
+      <caption class="visually-hidden">Заняття центру розвитку: вік і ціни</caption>
+      <thead>
+        <tr>
+          <th scope="col">Заняття</th>
+          <th scope="col">Вік</th>
+          <th scope="col" class="prices__money">Разово</th>
+          <th scope="col" class="prices__money">Абонемент</th>
+        </tr>
+      </thead>
+      <tbody>
+        {lessons.map((l) => (
+          <tr class="lesson" data-lesson data-spans={JSON.stringify(l.spans)}>
+            <th scope="row" class="lesson__name">
+              <span class="lesson__title">{l.name}</span>
+              {l.time && <span class="lesson__note num">{l.time}</span>}
+              {l.note && <span class="lesson__note">{l.note}</span>}
+            </th>
+            <td class="lesson__age" data-label="Вік">
+              <span class="num">{l.ages}</span>
+              {l.spans.length > 0 && <Track spans={l.spans} labels={false} tone="wine" size="mini" reveal="clip" />}
+            </td>
+            {l.single
+              ? <><td class="prices__money price" data-label="Разово">{l.single}</td><td class="prices__money price" data-label="Абонемент">{l.pass}{l.passNote && <span class="price__note">{l.passNote}</span>}</td></>
+              : <td class="prices__money prices__ask" colspan="2" data-label="Ціна">ціну уточнюйте</td>}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+
+    <div class="tsentr__foot">
+      <p>Також: дні народження, перший весільний танець, зумба та аеробіка 14+.</p>
+      <a class="btn btn--on-wine" href={phone.href}><Icon name="phone" size={20} />Записатися на заняття</a>
+    </div>
+  </div>
+</section>

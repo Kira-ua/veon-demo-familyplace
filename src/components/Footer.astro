@@ -1,0 +1,46 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/logo-familyplace.png";
+import FutureLink from "./FutureLink.astro";
+import Icon from "./Icon.astro";
+import { phone, email, instagram, facebook, places } from "../data/familyplace";
+const soon = "Розділ у розробці";
+const pages = ["Садочки", "Центр розвитку", "Початкова школа", "Табір", "Про нас", "Галерея", "Контакти"];
+---
+<footer class="site-footer" data-rec="R-003,SEO-R002">
+  <div class="container site-footer__grid">
+    <div class="site-footer__brand">
+      <a class="site-header__logo" href="#top" aria-label="FamilyPlace, на початок сторінки">
+        <Image src={logo} alt="FamilyPlace" width={336} height={49} loading="lazy" decoding="async" format="webp" class="logo-img" />
+      </a>
+      <p class="muted">Садочки в Минаї та Сторожниці, центр розвитку і початкова школа в Ужгороді.</p>
+    </div>
+    <div>
+      <p class="site-footer__title">Зв’язок</p>
+      <ul class="site-footer__list">
+        <li><a href={phone.href} class="site-footer__link num"><Icon name="phone" size={18} />{phone.display}</a></li>
+        <li><a href={email.href} class="site-footer__link"><Icon name="mail" size={18} />{email.display}</a></li>
+        <li><a href={instagram.href} class="site-footer__link" target="_blank" rel="noopener"><Icon name="instagram" size={18} />Instagram</a></li>
+        <li><a href={facebook.href} class="site-footer__link" target="_blank" rel="noopener"><Icon name="facebook" size={18} />Facebook</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="site-footer__title">Адреси</p>
+      <ul class="site-footer__list site-footer__plain">
+        <li>{places.centre.city}, {places.centre.street}</li>
+        <li>{places.mynai.city}, {places.mynai.street}</li>
+        <li>{places.storozhnytsia.city}, {places.storozhnytsia.street}</li>
+      </ul>
+    </div>
+    <nav aria-label="Сторінки повного сайту">
+      <p class="site-footer__title">Сторінки</p>
+      <ul class="site-footer__list">
+        {pages.map((p) => <li><FutureLink note={soon}>{p}</FutureLink></li>)}
+      </ul>
+    </nav>
+  </div>
+  <div class="container site-footer__legal">
+    <p class="small muted">© FamilyPlace</p>
+    <FutureLink note={soon} class="small">Політика конфіденційності</FutureLink>
+  </div>
+</footer>

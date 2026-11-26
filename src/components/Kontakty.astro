@@ -1,0 +1,33 @@
+---
+import FutureLink from "./FutureLink.astro";
+import Icon from "./Icon.astro";
+import { phone, email, instagram, facebook, places } from "../data/familyplace";
+const list = [places.centre, places.mynai, places.storozhnytsia];
+---
+<section id="kontakty" class="section kontakty" data-rec="SEO-R002" aria-labelledby="kontakty-title">
+  <div class="container">
+    <h2 id="kontakty-title">Три адреси й один телефон</h2>
+    <div class="addresses">
+      {list.map((p) => (
+        <article class="address">
+          <h3>{p.name}</h3>
+          <address class="address__street">{p.city},<br />{p.street}</address>
+          <p class="address__hours num">{p.hours.join(", ")}</p>
+          <a class="link-quiet" href={p.map} target="_blank" rel="noopener"><Icon name="route" size={18} /><span>Прокласти маршрут</span></a>
+        </article>
+      ))}
+    </div>
+    <div class="channels">
+      <a class="channels__phone num" href={phone.href}>{phone.display}</a>
+      <div class="channels__request">
+        <FutureLink note="Онлайн-заявка з’явиться в повній версії сайту" class="btn-disabled">Онлайн-заявка</FutureLink>
+        <p class="small muted">Найшвидше — зателефонувати.</p>
+      </div>
+      <ul class="channels__list">
+        <li><a class="link-quiet" href={email.href}><Icon name="mail" size={18} /><span>{email.display}</span></a></li>
+        <li><a class="link-quiet" href={instagram.href} target="_blank" rel="noopener"><Icon name="instagram" size={18} /><span>Instagram</span></a></li>
+        <li><a class="link-quiet" href={facebook.href} target="_blank" rel="noopener"><Icon name="facebook" size={18} /><span>Facebook</span></a></li>
+      </ul>
+    </div>
+  </div>
+</section>
