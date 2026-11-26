@@ -550,3 +550,6 @@ a:not([class]):hover { color: var(--color-accent); }
 .price__note { display: block; margin-top: var(--space-3xs); font-family: var(--font-body); font-weight: var(--weight-body); font-size: var(--text-sm); color: var(--color-rose-muted); }
 /* Sticky bar label breathing room */
 .callbar__ig { padding-inline: var(--space-sm); }
+
+/* скрытая подпись «р.» держится внутри кнопки года */
+.year-rail__btn { position: relative; }
